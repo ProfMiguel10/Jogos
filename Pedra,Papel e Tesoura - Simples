@@ -1,0 +1,39 @@
+package ia;
+import java.util.Random;
+import java.util.Scanner;
+public class Jogo {
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		Random r = new Random();
+		String[] op = { "Pedra", "Papel", "Tesoura" };
+		boolean jogar = true;
+		while (jogar) {
+			System.out.println("Digite: 0 para Pedra, 1 para Papel, 2 para Tesoura");
+			int escolhaJog = in.nextInt();
+			if (escolhaJog < 0 || escolhaJog > 2) {
+				System.out.println("Erro!  Tente novamente.");
+				continue;
+			}
+			int escolhaMaq = r.nextInt(3);
+
+			System.out.println("Você: " + op[escolhaJog]);
+			System.out.println("Máquina: " + op[escolhaMaq]);
+
+			if (escolhaJog == escolhaMaq) {
+				System.out.println("Empate!");
+			} else if ((escolhaJog == 0 && escolhaMaq == 2) || (escolhaJog == 1 && escolhaMaq == 0)
+					|| (escolhaJog == 2 && escolhaMaq == 1)) {
+				System.out.println("Ganhou!");
+			} else {
+				System.out.println("Perdeu!");
+			}
+
+			System.out.print("Deseja continuar? (s/n): ");
+			char resposta = in.next().toLowerCase().charAt(0);
+			if (resposta != 's') {
+				jogar = false;
+			}
+		}
+		in.close();
+	}
+}
